@@ -59,7 +59,9 @@ module.exports = function(passport) {
 			User.findOne({'local.email': email}, function(err, user){
 				if (err) return done(err)
 
-				if (user) return done(null, user)
+				if (!user) return done(null, false)
+				
+				return done(null, user)
 			})
 		})
 	}
