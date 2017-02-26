@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Club</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="/css/custom.css">
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+    	<div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+      		</button>
+		    <a class="navbar-brand">Book Club</a>
+	    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav navbar-right">
+	    	<li><a href="/">All Books</a></li>
+	      	<% if (counter) { %>
+		      	<li><a href="/mybooks">My Books</a></li>
+		      	<li><a href="/profile">Profile</a></li>
+		      	<li><a href="/logout">Logout</a></li>
+	      	<% } else { %>
+		        <li><a href="/login">Login</a></li>
+		        <li><a href="/signup">Signup</a></li>
+	        <% } %>
+	    </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-3 col-sm-0 col-xs-0"></div>
+<div class="col-md-6 col-sm-12 col-xs-12">
+<br><br><br>
+<form method="POST" action="/mybooks">
+	<div class="form-group">
+		<input placeholder="Add Book" class="form-control" type="text" name="book" maxlength="50"/>
+	</div>
+
+	<button class="btn btn-success" type="submit">Add</button>
+</form>
+<br>
+</div>
+<div class="col-md-3 col-sm-0 col-xs-0"></div>
+</div>
+
+<!-- Successful transactions -->
+<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<h1>Successful Transactions</h1>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<h2 class="sub-heading">Books you gave to others</h2>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+</div>
+
+<% for(var i = 0; i<userAccepted.length; i++) { %>
+	<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+	<strong><h4><%= userAccepted[i].title %></h4></strong>
+	<img src="<%= userAccepted[i].cover %>">
+	<p>You can contact the user at <%= userAccepted[i].requester %></p>
+	<br>
+	<br>
+	<hr>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	</div>
+<% } %>
+
+<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<h2 class="sub-heading">Books others gave you</h2>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+</div>
+
+<% for(var i = 0; i<otherAccepted.length; i++) { %>
+	<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+	<strong><h4><%= otherAccepted[i].title %></h4></strong>
+	<img src="<%= otherAccepted[i].cover %>">
+	<p>You can contact the user at <%= otherAccepted[i].owner %></p>
+	<br>
+	<br>
+	<hr>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	</div>
+<% } %>
+
+<!-- All books that user requested -->
+<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<h1>Books you requested</h1>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+</div>
+
+<% for(var i = 0; i<requested.length; i++) { %>
+	<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+	<h3><%= requested[i].title %></h3>
+	<img src="<%= requested[i].cover %>">
+	<br>
+	<br>
+	<hr>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	</div>
+<% } %>
+
+<!-- All books that user should accept requests to -->
+<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<h1>Pending Requests from others</h1>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+</div>
+
+<% for(var i = 0; i<pending.length; i++) { %>
+	<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+	<h3><%= pending[i].title %></h3>
+	<img src="<%= pending[i].cover %>">
+	<br>
+	<br>
+	<div>
+		<a href="/api/books/accept/<%= pending[i]['bookId'] %>" class="btn btn-success delete">Accept</a>
+
+		<a href="/api/books/reject/<%= pending[i]['bookId'] %>" class="btn btn-danger delete">Reject</a>
+	</div>
+	<hr>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	</div>
+<% } %>
+
+<!-- All books user ever posted -->
+<div class="row">
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<h1>All Books You Ever Advertised</h1>
+	</div>
+	<div class="col-md-3 col-sm-0 col-xs-0"></div>
+</div>
+
+<% for(var i = 0; i<books.length; i++) { %>
+		<div class="row">
+		<div class="col-md-3 col-sm-0 col-xs-0"></div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
+		<strong><h4><%= books[i].title %></h4></strong>
+		<img src="<%= books[i].cover %>">
+		<br>
+		<br>
+		<div>
+			<a href="/api/books/delete/<%= books[i]['_id'] %>" class="btn btn-danger delete">Delete</a>
+		</div>
+		<hr>
+		</div>
+		<div class="col-md-3 col-sm-0 col-xs-0"></div>
+		</div>
+<% } %>
+
+</div>
+</div>
+</body>
+</html> 

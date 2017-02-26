@@ -1,0 +1,34 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	color: #176DA3;
+}
+
+h2.sub-heading {
+	color: #004F74;
+}
+
+nav.navbar.navbar-default {
+	background-color: #212A34;
+}
+
+.navbar-default .navbar-brand {
+	color: #fff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+	color: #999999;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+	color: #999999;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book Club</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="/css/custom.css">
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<script type="text/javascript" src="/js/list.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+    	<div class="navbar-header">
+      		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+      		</button>
+		    <a class="navbar-brand">Book Club</a>
+	    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav navbar-right">
+	    	<li><a href="/">All Books</a></li>
+	      	<% if (counter) { %>
+		      	<li><a href="/mybooks">My Books</a></li>
+		      	<li><a href="/profile">Profile</a></li>
+		      	<li><a href="/logout">Logout</a></li>
+	      	<% } else { %>
+		        <li><a href="/login">Login</a></li>
+		        <li><a href="/signup">Signup</a></li>
+	        <% } %>
+	    </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+
+<% if(counter) { %>
+	<% for (var i=0; i<books.length; i++) { %>
+		<div class="row">
+		<div class="col-md-3 col-sm-0 col-xs-0"></div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
+		<h3><%= books[i].title %></h3>
+		<img src="<%= books[i].cover %>">
+		<br>
+		<br>
+		<div>
+			<a href="/api/books/request/<%= books[i]['_id'] %>" class="btn btn-success request">Request</a>
+		</div>
+		<hr>
+		</div>
+		<div class="col-md-3 col-sm-0 col-xs-0"></div>
+		</div>
+	<% } %>
+<% } else { %>
+<div>
+	<h3>Features</h3>
+	<p>One of the largest collections of borrower books in the world</p>
+	<p>Search books through Google Books API</p>
+	<p>Highly robust user interface and API</p>
+</div>
+<% } %>
+
+
+
+</div>
+
+</body>
+</html>
