@@ -1,6 +1,6 @@
 # Book Trading Club
 
-A web application for users to help borrow books. When a user posts a book, other users can send a request to borrow that book. The owner of the book can then decide whether to accept or reject the borrow request. Libraries and APIs used include PassportJS (for user authentication), Google Books API (for getting book details).
+A web application for users to help borrow books. When a user posts a book, other users can send a request to borrow that book. The owner of the book can then decide whether to accept or reject the borrow request. The backend consists of Node.js and MongoDB with a REST API. Libraries and APIs used include PassportJS (for user authentication), Google Books API (for getting book details).
 
 ## Getting Started
 
